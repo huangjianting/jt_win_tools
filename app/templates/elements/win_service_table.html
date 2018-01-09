@@ -1,0 +1,75 @@
+{#<table>#}
+{#    <tr>#}
+{#        <td><button class="ui primary button" ng-click="get_win_service_list()">reload</button></td>#}
+{#        <td><div class="ui form">#}
+{#            <div class="grouped fields">#}
+{#                <div class="field">#}
+{#                    <div class="ui radio checkbox">#}
+{#                        <input name="fruit" tabindex="0" class="hidden" type="radio">#}
+{#                        <label>Apples</label>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="field">#}
+{#                    <div class="ui radio checkbox">#}
+{#                        <input name="fruit" tabindex="0" class="hidden" type="radio">#}
+{#                        <label>Oranges</label>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div></td>#}
+{#    </tr>#}
+{#</table>#}
+<div class="ui form">
+    <div class="inline fields">
+        <label for="fruit"><button class="ui primary button" ng-class="win_service_reload_loading" ng-click="get_win_service_list()">reload</button></label>
+        <div class="field" ng-click="check_win_service_radio()">
+            <div class="ui radio checkbox checked">
+                <input type="radio" name="win_service_radio" checked="" tabindex="0" class="hidden" value="10">
+                <label>10 WIN32_OWN_PROCESS</label>
+            </div>
+        </div>
+        <div class="field" ng-click="check_win_service_radio()">
+            <div class="ui radio checkbox">
+                <input type="radio" name="win_service_radio" tabindex="1" class="hidden" value="20">
+                <label>20 WIN32_SHARE_PROCESS</label>
+            </div>
+        </div>
+        <div class="field" ng-click="check_win_service_radio()">
+            <div class="ui radio checkbox">
+                <input type="radio" name="win_service_radio" tabindex="2" class="hidden"  value="0">
+                <label>Others</label>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+<table class="ui selectable sortable celled compact table" data-ng-init="get_win_service_list()" style="word-wrap:break-word;">
+    <thead>
+    <tr><th>name</th>
+        <th>display_name</th>
+{#        <th>service_type</th>#}
+        <th>action</th>
+        {#        <th>service_state</th>#}
+        {#        <th>service_action</th>#}
+    </tr></thead>
+    <tbody>
+    <tr ng-repeat="x in win_service_list_now" class="{[x.service_state|win_service_state2]}" style="font-weight: bold">
+        <td>{[x.name]}</td>
+        <td>{[x.display_name]}</td>
+{#        <td>{[x.service_type]}</td>#}
+        {#        <td>{[x.service_state]}</td>#}
+        {#        <td>{[x.service_action]}</td>#}
+{#        <td style="padding-top: 0px;padding-bottom: 0px;">#}
+        <td>
+            <button class="ui primary basic button mini" ng-class="x.is_reloading" ng-click="win_service_reload_one($index)">reload</button>
+            <button class="ui positive basic button mini" ng-class="x.is_starting" ng-click="win_service_start_one($index)">start</button>
+            <button class="ui negative basic button mini" ng-class="x.is_stoping" ng-click="win_service_stop_one($index)">stop</button>
+        </td>
+    </tr>
+    </tbody>
+</table>

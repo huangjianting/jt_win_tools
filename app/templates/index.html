@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="static/semantic/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="static/app.css">
+    <script src="static/jquery/jquery-3.1.0.js"></script>
+    <script src="static/semantic/semantic.min.js"></script>
+    <script src="/static/angular/angular.min.js"></script>
+    <script src="/static/angular/angular-sanitize.min.js"></script>
+    <style type="text/css">
+    body > .ui.container {
+      margin-top: 3em;
+    }
+    iframe {
+      border: none;
+      width: calc(100% + 2em);
+      margin: 0em -1em;
+      height: 300px;
+    }
+    iframe html {
+      overflow: hidden;
+    }
+    iframe body {
+      padding: 0em;
+    }
+
+    .ui.container > h1 {
+      font-size: 3em;
+      text-align: center;
+      font-weight: normal;
+    }
+    .ui.container > h2.dividing.header {
+      font-size: 2em;
+      font-weight: normal;
+      margin: 4em 0em 3em;
+    }
+
+
+    .ui.table {
+      table-layout: fixed;
+    }
+  </style>
+</head>
+<body>
+<div class="ui container">
+
+    <h1>Windows Tools</h1>
+{#     <h2 class="ui dividing header">server list</h2>#}
+
+
+    <div ng-app="myApp" ng-controller="myCtrl" ng-init="">
+
+        <div class="ui grid">
+{#        <div class="four wide column">#}
+{#            {% include 'elements/server_list_table.html' ignore missing %}#}
+{#        </div>#}
+{#        <div class="twelve wide column">#}
+        <div>
+            <div class="ui top attached tabular menu">
+              <a class="item active" data-tab="first" >IIS 站点</a>
+              <a class="item" data-tab="second">Windows服务</a>
+            </div>
+            <div class="ui bottom attached tab segment active" data-tab="first">
+                {% include 'elements/iis_table.html' ignore missing %}
+            </div>
+            <div class="ui bottom attached tab segment" data-tab="second">
+                {% include 'elements/win_service_table.html' ignore missing %}
+            </div>
+
+        </div>
+
+      </div>
+    </div>
+</div>
+<script src="../static/app.js"></script>
+<script>
+    $('.tabular.menu .item').tab();
+    $('.ui.radio.checkbox').checkbox();
+</script>
+</body>
+</html>

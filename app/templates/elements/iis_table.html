@@ -1,0 +1,53 @@
+
+<div class="ui form">
+    <div class="inline fields">
+        <label for="fruit"><button class="ui primary button" ng-class="iis_reload_loading" ng-click="get_iis_list()">reload</button></label>
+{#        <div class="field" ng-click="check_iis_radio()">#}
+{#            <div class="ui radio checkbox checked">#}
+{#                <input type="radio" name="iis_radio" checked="" tabindex="0" class="hidden" value="10">#}
+{#                <label>10 WIN32_OWN_PROCESS</label>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="field" ng-click="check_iis_radio()">#}
+{#            <div class="ui radio checkbox">#}
+{#                <input type="radio" name="iis_radio" tabindex="1" class="hidden" value="20">#}
+{#                <label>20 WIN32_SHARE_PROCESS</label>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="field" ng-click="check_iis_radio()">#}
+{#            <div class="ui radio checkbox">#}
+{#                <input type="radio" name="iis_radio" tabindex="2" class="hidden"  value="0">#}
+{#                <label>Others</label>#}
+{#            </div>#}
+{#        </div>#}
+    </div>
+
+</div>
+
+
+
+
+
+<table class="ui selectable sortable celled compact table" data-ng-init="get_iis_list()" style="word-wrap:break-word;">
+    <thead>
+    <tr><th class="one wide">iis_id</th>
+        <th>name</th>
+        <th class="three wide">address</th>
+        <th class="two wide">port</th>
+{#        <th>iis_state</th>#}
+        <th class="five wide">action</th>
+    </tr></thead>
+    <tbody>
+    <tr ng-repeat="x in iis_list" class="{[x.iis_state|iis_state]}" style="font-weight: bold">
+        <td>{[x.iis_id]}</td>
+        <td>{[x.name]}({[x.iis_bind]})</td>
+        <td>{[x.address]}</td>
+        <td>{[x.port]}</td>
+        <td>
+            <button class="ui primary basic button mini" ng-class="x.is_reloading" ng-click="iis_reload_one($index)">reload</button>
+            <button class="ui positive basic button mini" ng-class="x.is_starting" ng-click="iis_start_one($index)">start</button>
+            <button class="ui negative basic button mini" ng-class="x.is_stoping" ng-click="iis_stop_one($index)">stop</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
