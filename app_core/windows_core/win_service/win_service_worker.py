@@ -20,7 +20,7 @@ class WinService(object):
         self.service_action = service_action
 
     def check_instance(self):
-        if self.display_name.find(u"instance") != -1:
+        if self.display_name.find(u"Instance") != -1:
             re_result = re.search(r'\(Instance:(.+)\)', self.display_name, re.M | re.I)
             if re_result is not None:
                 self.display_name = re_result.group(1)
