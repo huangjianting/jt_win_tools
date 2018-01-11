@@ -6,11 +6,24 @@ import re
 class WinService(object):
 
     def __init__(self, name, display_name, service_type, service_state, service_action):
-        self.name = name
+        dollar_index = name.find(u'$')
+        if dollar_index != -1:
+            self.name = name[dollar_index:]
+        else:
+            self.name = name
+        self.title_name = name
         self.display_name = display_name
+        self.check_instance()
+        self.title_display_name = display_name
         self.service_type = service_type
         self.service_state = service_state
         self.service_action = service_action
+
+    def check_instance(self):
+        if self.display_name.find(u"instance") != -1:
+            re_result = re.search(r'\(Instance:(.+)\)', self.display_name, re.M | re.I)
+            if re_result is not None:
+                self.display_name = re_result.group(1)
 
     def __str__(self):
         return '%s|%s|%s' % (self.name, self.service_state, self.service_action)
