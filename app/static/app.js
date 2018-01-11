@@ -11,7 +11,7 @@ app.config(['$interpolateProvider', function($interpolateProvider) {
 app.controller('myCtrl', function($scope, $http) {
     // source
     $scope.app_get = function (url_data, param, callback, error_call_back) {
-        var url = '/api/' + url_data + '/';
+        var url = '/api/' + url_data;
         $http(
             {
                 method: 'GET',
@@ -55,7 +55,7 @@ app.controller('myCtrl', function($scope, $http) {
         );
     };
     $scope.api_post = function (url_data, post_data, callback, error_callback) {
-        var url = '/api/' + url_data + '/';
+        var url = '/api/' + url_data;
         $scope.app_post(url, post_data, callback, error_callback);
     };
     // win_service

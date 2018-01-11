@@ -9,7 +9,7 @@ from app.models import ServerIp
 from app import db
 
 
-@api.route('/win_service/', methods=['GET', 'POST'])
+@api.route('/win_service', methods=['GET', 'POST'])
 def win_service():
     try:
         if request.method == 'GET':
@@ -71,7 +71,7 @@ def server():
     return ret
 
 
-@api.route('/iis/', methods=['GET', 'POST'])
+@api.route('/iis', methods=['GET', 'POST'])
 def iis():
     try:
         if request.method == 'GET':
